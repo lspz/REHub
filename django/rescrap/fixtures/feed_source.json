@@ -1,0 +1,9 @@
+[
+  {
+    "model": "core_scrap.feedsource",
+    "pk":1,
+    "fields": {
+      "name": "realestate.com.au"
+    }
+  }
+]

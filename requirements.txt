@@ -1,0 +1,4 @@
+Django==1.6.1
+Scrapy==0.22
+djangorestframework==2.3.6
+Werkzeug==0.9.3

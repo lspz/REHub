@@ -106,6 +106,9 @@ class Listing(models.Model):
   # huh? implement
   def parse_raw_data(self):
     pass
+
+  url_abs = property(get_url_abs)
+  
   # def save(self):
   #   if (self.address != None) and (self.address.pk == None):
   #     self.address.save()
@@ -113,4 +116,3 @@ class Listing(models.Model):
   #     self.agent.save()
   #   super(Listing, self).save()
 
-  url_abs = property(get_url_abs)

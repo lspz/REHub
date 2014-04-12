@@ -40,7 +40,7 @@
       <div class='col-md-10'> <div id='alerts'></div>
     </div>
     <div class='row'>
-      <div class='col-md-6'>
+      <div class='col-md-10'>
         <div id="listings"></div>
       <div>
     </div>
@@ -48,7 +48,21 @@
   
   <script id="listingTemplate" type="text/template">
     <div class="panel-heading">
-      <h3 class="panel-title"><a href="<%= url %>" target="_blank"><%= title_desc %></a></h3>
+      <h3 class="panel-title">
+        <a class="listing-title" href="<%= url %>" target="_blank"><%= address %></a>          
+
+        <div class='pull-right'>
+          <% if (bedrooms != null) { %>
+            <img src="{% static 'client/img/bedroom.png' %}"> <%= bedrooms %>
+          <% } %>
+          <% if (bathrooms != null) { %>
+            <img src="{% static 'client/img/bathroom.png' %}"> <%= bathrooms %>
+          <% } %>
+          <% if (carparks != null) { %>
+            <img src="{% static 'client/img/carpark.png' %}"> <%= carparks %>
+          <% } %>
+        </div>
+      </h3>
     </div>
     <div class="panel-body">
       <div class="media">
@@ -56,7 +70,9 @@
           <img class="media-object" height=96 width=128 src=<%= img_path %> />
         </div>
         <div class="media-body">
-          <h4 class="media-heading"><%= price_raw %></h4>
+          <h4 class="media-heading price-text">
+            <%= price_raw %> <small><%= title_desc %></small> 
+          </h4>
           <%= short_desc %>
         </div>
       </div>

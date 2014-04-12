@@ -13,6 +13,14 @@
   padding-bottom: 3px;
 }
 
+.listing-title {
+  text-transform: capitalize; 
+}
+
+.price-text {
+  color: #C80000;
+}
+
 .token-label {
   text-transform: capitalize;
 }

@@ -12,17 +12,27 @@ class SuburbsAPIView(generics.ListAPIView):
   serializer_class = SuburbSerializer
 
 class ListingSerializer(serializers.ModelSerializer):
-  # huh? show agent
-  # huh? group by address so there's no duplicate
   address = serializers.SlugRelatedField(many=False, read_only=True, slug_field='address')
   url = serializers.Field(source='url_abs') 
   
   class Meta:
     model = Listing
     many = True
-    fields = ('id', 'address', 'url', 'img_path', 'price_raw', 'title_desc', 'short_desc')
+    fields = (
+      'id', 
+      'address', 
+      'url', 
+      'img_path', 
+      'price_raw', 
+      'title_desc', 
+      'short_desc',
+      'bedrooms',
+      'bathrooms',
+      'carparks'
+    )
 
 
+# huh? group by address so there's no duplicate. Need new UniqueListing model
 class ListingsAPIView(generics.ListAPIView):
   serializer_class = ListingSerializer
 

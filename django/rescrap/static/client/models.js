@@ -1,13 +1,16 @@
 var Listing = Backbone.Model.extend({
   defaults: function(){
     return {
-      id: -1,
+      id: null,
       address: '',
       url: '',
       img_path: '',
       price_raw: '',
       title_desc: '',
-      short_desc: ''
+      short_desc: '',
+      bedrooms: null,
+      bathrooms: null,
+      carparks: null
     }
   }
 });

@@ -8,6 +8,7 @@ var Listing = Backbone.Model.extend({
       price_raw: '',
       title_desc: '',
       short_desc: '',
+      source: '',
       bedrooms: null,
       bathrooms: null,
       carparks: null
@@ -22,10 +23,11 @@ var Listings = Backbone.Collection.extend({
     _.bindAll(this, 'url');
 
     this.suburbId = -1;
+    this.pageNo = 0;
   },
 
   url: function() {
-    return '/api/listings/' + this.suburbId + '/';
+    return '/api/listings/' + this.suburbId + '/' + this.pageNo + '/';
   }
 });
 

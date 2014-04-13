@@ -68,7 +68,13 @@ var AppView = Backbone.View.extend({
   },
 
   initialize: function(){
-    _.bindAll(this, 'populateSuburbs', 'refreshClicked', 'getSelectedSuburbIds');
+    _.bindAll(this, 
+      'populateSuburbs', 
+      'refreshClicked', 
+      'getSelectedSuburbIds',
+      'fetchListing',
+      'fetchMoreListing'
+    );
 
     this.suburbs = new Suburbs();
     this.listings = new Listings();
@@ -76,6 +82,16 @@ var AppView = Backbone.View.extend({
 
     this.listingsView = new ListingsView({model: this.listings}); 
     this.alertsView = new AlertsView({model: this.alerts});
+
+    this.pageNo = 0;
+    this.isAllListingLoaded = false;
+
+    var context = this;
+    document.addEventListener('scroll', function (event) {
+      if (document.body.scrollHeight == (document.body.scrollTop + window.innerHeight))  {
+        context.fetchMoreListing();
+      }
+    });
   },
 
   populateSuburbs: function(){
@@ -103,13 +119,24 @@ var AppView = Backbone.View.extend({
   },
 
   refreshClicked : function(event){
-    // TODO: support multiple ID's
     this.alerts.reset();
+    this.isAllListingLoaded = false;
+    this.pageNo = 0;
+    
+    this.listings.reset();
+    this.fetchListing(this.pageNo, true);
+  },
+
+  fetchMoreListing: function(){
+    if (this.isAllListingLoaded){
+      return;
+    }
+
+    this.fetchListing(++this.pageNo, false);
+  },
+
+  fetchListing: function(pageNo, showError){
     var noListingFoundMsg = 'Your search returned no result';
-
-    // var suburbsSel = $('#suburbTags').tokenfield('getTokensList');
-
-    // var suburbsList = this.suburbs.where({name: suburbsSel});
 
     var suburbIds = this.getSelectedSuburbIds();
     if (suburbIds == ''){
@@ -117,17 +144,20 @@ var AppView = Backbone.View.extend({
       return;
     }
 
-    var context = this;
     this.listings.suburbId = suburbIds;
-    this.listings.reset();
+    this.listings.pageNo = pageNo;
     this.listings.fetch({
       add: true,
       success: function() {
-        if (context.listings.length == 0){
-          this.alerts.add({msg: noListingFoundMsg});
+        if (this.listings.length == 0){
+          this.isAllListingLoaded = true;
+          if (showError) { 
+            this.alerts.add({msg: noListingFoundMsg});
+          }
         }
       }
     });
+
   },
 
   getSelectedSuburbIds: function(){

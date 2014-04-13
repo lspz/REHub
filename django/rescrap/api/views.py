@@ -13,6 +13,7 @@ class SuburbsAPIView(generics.ListAPIView):
 
 class ListingSerializer(serializers.ModelSerializer):
   address = serializers.SlugRelatedField(many=False, read_only=True, slug_field='address')
+  source = serializers.SlugRelatedField(many=False, read_only=True, slug_field='img_path')
   url = serializers.Field(source='url_abs') 
   
   class Meta:
@@ -26,6 +27,7 @@ class ListingSerializer(serializers.ModelSerializer):
       'price_raw', 
       'title_desc', 
       'short_desc',
+      'source',
       'bedrooms',
       'bathrooms',
       'carparks'
@@ -36,8 +38,13 @@ class ListingSerializer(serializers.ModelSerializer):
 class ListingsAPIView(generics.ListAPIView):
   serializer_class = ListingSerializer
 
+  LISTING_PER_PAGE = 10
+
   # Limit 20 for now
   def get_queryset(self):
-    # huh? get all
     suburb_ids = self.kwargs['suburb_ids'].split('-')
-    return Listing.objects.filter(address__suburb__id=suburb_ids[0])[:20]
+    page_no = int(self.kwargs['page_no'])
+    look_from = page_no * self.LISTING_PER_PAGE
+    look_to = look_from + self.LISTING_PER_PAGE - 1
+    # huh? get all suburbs
+    return Listing.objects.filter(address__suburb__id=suburb_ids[0])[look_from:look_to]

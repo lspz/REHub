@@ -64,13 +64,15 @@ var AppView = Backbone.View.extend({
   el: 'body',
 
   events : {
-    "click button#btnRefresh" : "refreshClicked"
+    "click button#btn-refresh" : "refreshClicked",
+    "click button#btn-advanced" : "advancedClicked"
   },
 
   initialize: function(){
     _.bindAll(this, 
       'populateSuburbs', 
       'refreshClicked', 
+      'advancedClicked',
       'getSelectedSuburbIds',
       'fetchListing',
       'fetchMoreListing'
@@ -101,7 +103,7 @@ var AppView = Backbone.View.extend({
       suburbArray.push(suburb.get('name'));
     });
 
-    $('#suburbTags').tokenfield({
+    $('#suburb-tags').tokenfield({
       typeahead: {
         name: 'tags',
         local: suburbArray
@@ -125,6 +127,16 @@ var AppView = Backbone.View.extend({
     
     this.listings.reset();
     this.fetchListing(this.pageNo, true);
+  },
+
+  advancedClicked: function(event){
+    // var is_active = $('#btn-advanced').has_class('active');
+    // if (is_active) {
+    //   $('#btn-advanced').remove_class('active');
+    // } 
+    // else {
+    //   $('#btn-advanced').add_class('active');
+    // }
   },
 
   fetchMoreListing: function(){

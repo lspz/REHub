@@ -1,8 +1,16 @@
+.vspacer {
+  margin-top: 10px; /* define margin as you see fit */
+}
+
+.hspacer {
+  margin-left: 10px; /* define margin as you see fit */
+}
+
 .custom-nav {
   /*text-shadow: 0 -1px 0 rgba(0,0,0,.15);*/
-  background-color: #563d7c;
-/*  border-color: #463265;
-  box-shadow: 0 1px 0 rgba(255,255,255,.1);*/
+  background-color: #003399;
+  /*border-color: #463265;*/
+  /*box-shadow: 0 1px 0 rgba(255,255,255,.1);*/
 }
 
 .navbar-brand.custom-brand {

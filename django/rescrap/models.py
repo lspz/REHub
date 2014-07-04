@@ -116,3 +116,7 @@ class Listing(models.Model):
   #     self.agent.save()
   #   super(Listing, self).save()
 
+# huh? implement
+# class ListingDetail(model.Models)
+#   listing = models.ForeignKey(Listing, primary_key=True)
+#   desc = models.CharField(max_length=3000, blank=True)

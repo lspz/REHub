@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{% static 'client/lib/bootstrap.min.css' %}" rel="stylesheet">
   <link href="{% static 'client/lib/bootstrap-tokenfield.min.css' %}" rel="stylesheet">
   <link href="{% static 'client/lib/tokenfield-typeahead.min.css' %}" rel="stylesheet">
   <link href="{% static 'client/app.css' %}" rel="stylesheet">
@@ -18,32 +18,51 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand custom-brand" href="#">Blah</a>
+      <a class="navbar-brand custom-brand" href="#">Real Estate Hub</a>
     </div>
   </nav>
 
   <div class="container">
-    <div class='row'>
-      <div class='col-md-3'>
-        <h4>Search suburbs:</h4>
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class='row'>
+          <div class='col-md-3'>
+            <h4>Enter Suburbs:</h4>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-12'>
+            <input type="text" class="form-control" id="suburb-tags" value="" />
+          </div>
+        </div>
+        <div class='row vspacer'>
+          <div class='col-md-8'></div>
+          <div class='col-md-4'>
+            <button id="btn-refresh" type="button" class="btn btn-primary pull-right">
+              <i class='glyphicon glyphicon-refresh'></i>
+              Search
+            </button>
+            <div> </div>
+            <button id="btn-advanced" type="button" class="btn btn-default pull-right " data-toggle="button">
+              <i class='glyphicon glyphicon-list-alt'></i>
+              Advanced
+            </button>
+          </div>
+        </div>
+        <div class='row vspacer'>
+          <div class='col-md-10'> <div id='alerts'></div></div>
+        </div>
+
       </div>
     </div>
+
     <div class='row'>
-      <div class='col-md-10 col-sm-10 col-xs-9'>
-        <input type="text" class="form-control" id="suburbTags" value="" />
-      </div>
-      <div class='col-md-2 col-sm-2 col-xs-2'>
-        <button id="btnRefresh" type="button" class="btn btn-primary btn-lg"><i class='glyphicon glyphicon-refresh'></i></button>
-      </div>
-    </div>
-    <div class='row'>
-      <div class='col-md-10'> <div id='alerts'></div>
-    </div>
-    <div class='row'>
-      <div class='col-md-10'>
+      <div class='col-md-12'>
         <div id="listings"></div>
       <div>
     </div>
+
   </div>
   
   <script id="listingTemplate" type="text/template">

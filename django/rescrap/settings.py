@@ -121,7 +121,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'grappelli',
+    # 'grappelli',
     'django.contrib.admin',
     'rest_framework',
     'rescrap',

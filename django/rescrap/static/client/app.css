@@ -8,13 +8,18 @@
 
 .custom-nav {
   /*text-shadow: 0 -1px 0 rgba(0,0,0,.15);*/
-  background-color: #003399;
+  /*background-color: #003399;*/
+  /*border-style: none;*/
   /*border-color: #463265;*/
   /*box-shadow: 0 1px 0 rgba(255,255,255,.1);*/
 }
 
 .navbar-brand.custom-brand {
-  color: white;
+  /*color: white;*/
+}
+
+img.inverse {
+  -webkit-filter: invert(100%);
 }
 
 .list-item {
@@ -39,4 +44,15 @@
 
 #listings {
   padding-top: 40px;
+}
+
+.caret-right {
+  border-bottom: 4px solid transparent;
+  border-top: 4px solid transparent;
+  border-left: 4px solid;
+  display: inline-block;
+  height: 0;
+  opacity: 0.3;
+  vertical-align: top;
+  width: 0;
 }

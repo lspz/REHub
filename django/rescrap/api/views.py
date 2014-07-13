@@ -47,4 +47,5 @@ class ListingsAPIView(generics.ListAPIView):
     look_from = page_no * self.LISTING_PER_PAGE
     look_to = look_from + self.LISTING_PER_PAGE - 1
     # huh? get all suburbs
+    # print self.request.GET.get('a')
     return Listing.objects.filter(address__suburb__id=suburb_ids[0])[look_from:look_to]

@@ -27,7 +27,7 @@ var Listings = Backbone.Collection.extend({
   },
 
   url: function() {
-    return '/api/listings/' + this.suburbId + '/' + this.pageNo + '/';
+    return '/api/listings/' + this.suburbId + '/' + this.pageNo + '/' ;
   }
 });
 

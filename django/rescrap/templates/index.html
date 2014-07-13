@@ -10,15 +10,27 @@
 
 <body>
 
-  <nav class="navbar navbar-inverse custom-nav" role="banner">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand custom-brand" href="#">Real Estate Hub</a>
+  <nav class="navbar navbar-default custom-nav" role="banner">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand custom-brand" href="#">
+          <i class="glyphicon glyphicon-home"></i> Real Estate Hub
+        </a>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target='#nav-collapse1'>
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      
+      <div class="collapse navbar-collapse" id='nav-collapse1'>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Sign In</a></li>
+          <li class='active'><a href="#">Sign Up</a></li>
+        </ul>
+      </div>
     </div>
   </nav>
 
@@ -26,39 +38,130 @@
 
     <div class="panel panel-default">
       <div class="panel-body">
-        <div class='row'>
-          <div class='col-md-3'>
-            <h4>Enter Suburbs:</h4>
-          </div>
-        </div>
+
         <div class='row'>
           <div class='col-md-12'>
-            <input type="text" class="form-control" id="suburb-tags" value="" />
+            <input type="text" class="form-control input-lg" id="suburb-tags" placeholder="Enter Suburbs.." value="" />
           </div>
         </div>
-        <div class='row vspacer'>
-          <div class='col-md-8'></div>
-          <div class='col-md-4'>
-            <button id="btn-refresh" type="button" class="btn btn-primary pull-right">
+
+        
+        <div class='row vspacer pull-right'>
+          <div class='col-md-12 col-lg-12'>
+
+            <div class="btn-group ">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id='btn-sort-by'>
+                Sort By <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#" id="btn-sort-by-price">Price</a></li>
+                <li><a href="#" id="btn-sort-by-source">Source</a></li>
+              </ul>
+            </div>
+
+            <button id="btn-advanced" type="button" class="btn btn-default hspacer" data-toggle="collapse" data-target="#advanced">
+              <i class='glyphicon glyphicon-list-alt'></i>
+              Advanced
+              <span class="caret"></span>
+              <!-- <span class="caret-right"></span> -->
+            </button>
+
+            <button id="btn-refresh" type="button" class="btn btn-primary hspacer">
               <i class='glyphicon glyphicon-refresh'></i>
               Search
             </button>
-            <div> </div>
-            <button id="btn-advanced" type="button" class="btn btn-default pull-right " data-toggle="button">
-              <i class='glyphicon glyphicon-list-alt'></i>
-              Advanced
-            </button>
           </div>
         </div>
-        <div class='row vspacer'>
-          <div class='col-md-10'> <div id='alerts'></div></div>
+
+        <div class='row vspacer'> </div>
+
+        <div class="collapse" id="advanced">
+          <div class="row vspacer">
+            <!-- <div class="col-md-1 col-sm-1">Type</div> -->
+            <div class="col-md-4 col-sm-4">
+              Type
+              <div class="btn-group btn-group-sm hspacer" data-toggle="buttons">
+                <label class="btn btn-default  active">
+                  <input type="checkbox" checked> House
+                </label>
+                <label class="btn btn-default ">
+                  <input type="checkbox"> Apartment
+                </label>
+                <label class="btn btn-default">
+                  <input type="checkbox"> Townhouse
+                </label>
+              </div>
+            </div>
+<!--           </div>
+
+          <div class='row vspacer'> -->
+            <div class='col-md-2 col-sm-2 col-xs-2'>
+              <div class="dropdown">
+                <button class="btn btn-default btn-sm" type="button" id="btn-min-bedroom-menu" data-toggle="dropdown">
+                  Min Bedrooms <span class="caret"></span>
+                </button>
+                <ul id='list-min-bedroom' class="dropdown-menu" role="menu" aria-labelledby="btn-min-bedroom-menu">
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class='col-md-2 col-sm-2 col-xs-2'>
+              <div class="dropdown hspacer">
+                <button class="btn btn-default btn-sm" type="button" id="btn-max-bedroom-menu" data-toggle="dropdown">
+                  Max Bedrooms <span class="caret"></span>
+                </button>
+                <ul id='list-max-bedroom' class="dropdown-menu" role="menu" aria-labelledby="btn-max-bedroom-menu">
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">6</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class='col-md-2 col-sm-2 col-xs-2'>
+              <div class="dropdown hspacer">
+                <button class="btn btn-default btn-sm" type="button" id="btn-min-bathroom-menu" data-toggle="dropdown">
+                  Min Bathrooms <span class="caret"></span>
+                </button>
+                <ul id='list-min-bathroom' class="dropdown-menu" role="menu" aria-labelledby="btn-min-bathroom-menu">
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class='col-md-2 col-sm-2 col-xs-2'>
+              <div class="dropdown hspacer">
+                <button class="btn btn-default btn-sm" type="button" id="btn-max-bathroom-menu" data-toggle="dropdown">
+                  Max Bathrooms <span class="caret"></span>
+                </button>
+                <ul id='list-max-bathroom' class="dropdown-menu" role="menu" aria-labelledby="btn-max-bathroom-menu">
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">6</a></li>
+                </ul>
+              </div>
+            </div>
+
         </div>
 
-      </div>
+        <div class="row vspacer">
+          <div class="col-md-10"> <div id="alerts"></div></div>
+        </div>
+
     </div>
 
-    <div class='row'>
-      <div class='col-md-12'>
+    <div class="row">
+      <div class="col-md-12">
         <div id="listings"></div>
       <div>
     </div>
@@ -70,19 +173,20 @@
       <h3 class="panel-title">
         <a class="listing-title" href="<%= url %>" target="_blank"><%= address %></a>          
 
-        <div class='pull-right'>
+        <div class="pull-right">
           <% if (bedrooms != null) { %>
-            <img src="{% static 'client/img/bedroom.png' %}"> <%= bedrooms %>
+            <img class="inverse" src="{% static 'client/img/bedroom.png' %}"> <%= bedrooms %>
           <% } %>
           <% if (bathrooms != null) { %>
-            <img src="{% static 'client/img/bathroom.png' %}"> <%= bathrooms %>
+            <img class="inverse" src="{% static 'client/img/bathroom.png' %}"> <%= bathrooms %>
           <% } %>
           <% if (carparks != null) { %>
-            <img src="{% static 'client/img/carpark.png' %}"> <%= carparks %>
+            <img class="inverse" src="{% static 'client/img/carpark.png' %}"> <%= carparks %>
           <% } %>
         </div>
       </h3>
     </div>
+
     <div class="panel-body">
       <div class="media">
         <div class="pull-left">
@@ -97,13 +201,15 @@
         </div>
       </div>
     </div>
+
+
   </script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
-  <script src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
-  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js"></script>
+  <script src="{% static 'client/lib/jquery.js' %}"></script>
+  <script src="{% static 'client/lib/json2.js' %}"></script>
+  <script src="{% static 'client/lib/bootstrap.min.js' %}"></script>
+  <script src="{% static 'client/lib/underscore-min.js' %}"></script>
+  <script src="{% static 'client/lib/backbone-min.js' %}"></script>
   <script src="{% static 'client/lib/typeahead.js' %}"></script>
   <script src="{% static 'client/lib/bootstrap-tokenfield.js' %}"></script>
   <script src="{% static 'client/models.js' %}"></script>

@@ -64,15 +64,19 @@ var AppView = Backbone.View.extend({
   el: 'body',
 
   events : {
+    "click a#btn-sort-by-price" : "sortByPriceClicked",
+    "click a#btn-sort-by-source" : "sortBySourceClicked",
     "click button#btn-refresh" : "refreshClicked",
     "click button#btn-advanced" : "advancedClicked"
   },
 
   initialize: function(){
     _.bindAll(this, 
-      'populateSuburbs', 
+      "sortByPriceClicked",
+      "sortBySourceClicked",
       'refreshClicked', 
       'advancedClicked',
+      'populateSuburbs', 
       'getSelectedSuburbIds',
       'fetchListing',
       'fetchMoreListing'
@@ -120,6 +124,14 @@ var AppView = Backbone.View.extend({
     return this;  
   },
 
+  sortByPriceClicked : function(event){
+    $('#btn-sort-by').html('Sort By Price <span class="caret"></span>');
+  },
+
+  sortBySourceClicked : function(event){
+    $('#btn-sort-by').html('Sort By Source <span class="caret"></span>');
+  },
+
   refreshClicked : function(event){
     this.alerts.reset();
     this.isAllListingLoaded = false;
@@ -130,6 +142,9 @@ var AppView = Backbone.View.extend({
   },
 
   advancedClicked: function(event){
+    $('#btn-advanced').toggleClass('active');
+    // $('#btn-advanced .caret').toggleClass('hidden');
+    // $('#btn-advanced .caret-right').toggleClass('hidden');
     // var is_active = $('#btn-advanced').has_class('active');
     // if (is_active) {
     //   $('#btn-advanced').remove_class('active');
@@ -151,6 +166,7 @@ var AppView = Backbone.View.extend({
     var noListingFoundMsg = 'Your search returned no result';
 
     var suburbIds = this.getSelectedSuburbIds();
+    // alert(suburbIds);
     if (suburbIds == ''){
       this.alerts.add({msg: noListingFoundMsg});
       return;
@@ -173,7 +189,7 @@ var AppView = Backbone.View.extend({
   },
 
   getSelectedSuburbIds: function(){
-    var suburbsSel = $('#suburbTags').tokenfield('getTokensList');
+    var suburbsSel = $('#suburb-tags').tokenfield('getTokensList');
     var suburbsArray = suburbsSel.split(',');
     var result = ''
     var suburbs = this.suburbs;

@@ -42,7 +42,7 @@ def get_user_agent():
 ##############################
 
 init_django()
-init_proxy()
+# init_proxy()
 
 BOT_NAME = 'scrapper'
 
